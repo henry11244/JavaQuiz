@@ -1,0 +1,27 @@
+body {
+    display: flex;
+    justify-content: center;
+    margin-top: 30vh;
+}
+
+#question2,
+#question3,
+#question4,
+#userName {
+    display: none
+}
+
+form {
+    display: block;
+    text-align: center;
+    border: 1vh solid grey;
+    width: 80%;
+}
+
+button {
+    margin-top: 3%;
+}
+
+input {
+    margin-top: 2%;
+}
