@@ -25,3 +25,7 @@ button {
 input {
     margin-top: 2%;
 }
+
+#endPage {
+    display: none;
+}

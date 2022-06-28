@@ -17,6 +17,7 @@ var h1 = document.querySelector('h1')
 var userName = document.querySelector('#userName')
 var nameSubmit = document.querySelector('#nameSubmit')
 var Name = document.querySelector('#Name')
+var endPage = document.querySelector('#endPage')
 var nameValue = ''
 var correct = 0
 var timeLeft = 10
@@ -90,5 +91,10 @@ Name.addEventListener('change', function () {
 })
 
 nameSubmit.addEventListener('click', function () {
-    localStorage.setItem[nameValue](correct);
+    localStorage.setItem(nameValue, correct);
+    endPage.style.display = "flex";
+    h1.style.display = "none";
+    result.style.display = "none";
+    userName.style.display = "none";
+
 })
