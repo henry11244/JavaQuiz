@@ -82,3 +82,32 @@ label {
     color: white;
     font-size: large;
 }
+
+img {
+    display: none;
+    position: absolute;
+}
+
+.img1 {
+    left: 0;
+    bottom: 0;
+    height: 30vh;
+}
+
+.img2 {
+    right: 0;
+    bottom: 0;
+    height: 40vh;
+}
+
+.img3 {
+    right: 0;
+    top: 0;
+    height: 50vh;
+}
+
+.img4 {
+    left: 0;
+    top: 0;
+    height: 30vh;
+}

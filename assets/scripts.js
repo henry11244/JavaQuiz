@@ -25,9 +25,13 @@ var highScores = document.querySelector('#highScores')
 var reset = document.querySelector('#reset')
 var highScoresHeading = document.querySelector('#highScoresHeading')
 var audio = document.querySelector('#audio')
+var img = document.querySelector('img')
+
+// wrong answer subtraction value 
+var wrongAnswerSubtract = 5
 
 // wrong answer count
-var wrongAnswerSubtract = 5
+var wrongAnswer = 0
 
 // score count 
 var correct = 0
@@ -65,7 +69,7 @@ Start.addEventListener('click', function () {
                 userName.style.display = 'block';
             }
         }
-    }, 100)
+    }, 10000)
 })
 
 // logic for what happens when an answer is submitted
@@ -76,7 +80,12 @@ Question1Submit.addEventListener('click', function (x) {
     if (Question1Answer3.checked) {
         correct++;
     }
-    else { timeLeft = timeLeft - wrongAnswerSubtract }
+    else {
+        timeLeft = timeLeft - wrongAnswerSubtract;
+        wrongAnswer++;
+        wrongImg()
+
+    }
 })
 
 Question2Submit.addEventListener('click', function (x) {
@@ -86,7 +95,11 @@ Question2Submit.addEventListener('click', function (x) {
     if (Question2Answer2.checked) {
         correct++;
     }
-    else { timeLeft = timeLeft - wrongAnswerSubtract }
+    else {
+        timeLeft = timeLeft - wrongAnswerSubtract;
+        wrongAnswer++;
+        wrongImg()
+    }
 })
 
 Question3Submit.addEventListener('click', function (x) {
@@ -96,7 +109,11 @@ Question3Submit.addEventListener('click', function (x) {
     if (Question3Answer4.checked) {
         correct++;
     }
-    else { timeLeft = timeLeft - wrongAnswerSubtract }
+    else {
+        timeLeft = timeLeft - wrongAnswerSubtract
+            ; wrongAnswer++;
+        wrongImg()
+    }
 })
 
 Question4Submit.addEventListener('click', function (x) {
@@ -133,6 +150,19 @@ nameSubmit.addEventListener('click', function () {
 })
 
 // jeopardy audio function
-function jeopardy() {
-    audio.play();
+// function jeopardy() {
+//     audio.play();
+// }
+
+function wrongImg() {
+    if (wrongAnswer === 1) { img.setAttribute('style', 'display: block'); img.setAttribute('class', 'img1') }
+    else if (wrongAnswer === 2) {
+        img.setAttribute('src', 'assets/images/DBZ2.png');
+        img.setAttribute('class', 'img2')
+    }
+    else {
+        img.setAttribute('src', 'assets/images/DBZ3.png');
+        img.setAttribute('class', 'img3')
+    }
+
 }
