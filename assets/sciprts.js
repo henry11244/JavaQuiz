@@ -24,7 +24,7 @@ var timeLeft = 10
 
 var myInterval = setInterval(function () {
     if (timeLeft > 0) {
-        timer.innerHTML = ' ' + timeLeft;
+        timer.innerHTML = " " + timeLeft;
         timeLeft--;
     }
     else {
@@ -42,7 +42,7 @@ var myInterval = setInterval(function () {
 
         }
     }
-}, 100)
+}, 1000)
 
 
 

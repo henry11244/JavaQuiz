@@ -1,7 +1,16 @@
 body {
     display: flex;
     justify-content: center;
-    margin-top: 30vh;
+    flex-wrap: wrap;
+
+}
+
+h1,
+h2 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
 }
 
 #question2,
@@ -11,11 +20,13 @@ body {
     display: none
 }
 
-form {
+form,
+div {
     display: block;
     text-align: center;
+    justify-content: center;
     border: 1vh solid grey;
-    width: 80%;
+    width: 100%;
 }
 
 button {
@@ -28,4 +39,11 @@ input {
 
 #endPage {
     display: none;
+}
+
+section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
