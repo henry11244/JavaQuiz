@@ -18,6 +18,9 @@ var userName = document.querySelector('#userName')
 var nameSubmit = document.querySelector('#nameSubmit')
 var Name = document.querySelector('#Name')
 var endPage = document.querySelector('#endPage')
+var highScores = document.querySelector('#highScores')
+var reset = document.querySelector('#reset')
+var highScoresHeading = document.querySelector('#highScoresHeading')
 var nameValue = ''
 var correct = 0
 var timeLeft = 10
@@ -42,8 +45,7 @@ var myInterval = setInterval(function () {
 
         }
     }
-}, 1000)
-
+}, 100)
 
 
 Question1Submit.addEventListener('click', function (x) {
@@ -90,11 +92,29 @@ Name.addEventListener('change', function () {
 
 })
 
+scores = []
+if (JSON.parse(localStorage.getItem('scores') !== null)) { scores = JSON.parse(localStorage.getItem('scores')) }
+
 nameSubmit.addEventListener('click', function () {
-    localStorage.setItem(nameValue, correct);
-    endPage.style.display = "flex";
+
+    endPage.setAttribute('style', 'display: flex; border: none');
+    highScoresHeading.setAttribute('style', 'display: flex; border: none');
+    reset.setAttribute('style', 'display: flex; border: none');
     h1.style.display = "none";
     result.style.display = "none";
     userName.style.display = "none";
+    var newScore = [nameValue, correct];
+    scores.push(newScore);
+    localStorage.setItem('scores', JSON.stringify(scores));
+    var newOl = document.createElement('ol')
+    for (var i = 0; i < scores.length; i++) {
+        var newLi = document.createElement('li');
+        newLi.innerHTML = scores[i];
+        newOl.append(newLi);
+        highScores.append(newOl);
 
-})
+    }
+
+}
+)
+

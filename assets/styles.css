@@ -10,13 +10,14 @@ h2 {
     display: flex;
     justify-content: center;
     width: 100%;
-
 }
 
 #question2,
 #question3,
 #question4,
-#userName {
+#userName,
+#reset,
+#highScoresHeading {
     display: none
 }
 
@@ -28,6 +29,8 @@ div {
     border: 1vh solid grey;
     width: 100%;
 }
+
+
 
 button {
     margin-top: 3%;
@@ -46,4 +49,10 @@ section {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+#highScores {
+    border: none;
+    width: 150px;
+    text-align: center;
 }
