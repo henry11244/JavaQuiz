@@ -1,4 +1,6 @@
 // selectors for HTML objects
+var Start = document.querySelector('#Start')
+var title = document.querySelector('#title')
 var Question1Submit = document.querySelector('#Question1Submit')
 var Question2Submit = document.querySelector('#Question2Submit')
 var Question3Submit = document.querySelector('#Question3Submit')
@@ -22,38 +24,46 @@ var endPage = document.querySelector('#endPage')
 var highScores = document.querySelector('#highScores')
 var reset = document.querySelector('#reset')
 var highScoresHeading = document.querySelector('#highScoresHeading')
+var wrongAnswerSubtract = 5
 
 // score count 
 var correct = 0
 
 // defining timer variable
-var timeLeft = 1000
+var timeLeft = 200
 
 // defining the score array for high scores and pulling any existing data from local storage 
 scores = []
 if (JSON.parse(localStorage.getItem('scores') !== null)) { scores = JSON.parse(localStorage.getItem('scores')) }
 
-// function for quiz timer
-var myInterval = setInterval(function () {
-    if (timeLeft > 0) {
-        timer.innerHTML = " " + timeLeft;
-        timeLeft--;
-    }
-    else {
-        if (timeLeft === 0) {
-            clearInterval(myInterval)
-            timer.innerHTML = " " + "0";
-            question1.style.display = "none";
-            question2.style.display = "none";
-            question3.style.display = "none";
-            question4.style.display = "none";
-            h1.innerHTML = "Times Up";
-            result.innerText = correct + " Correct Answers";
-            timeDisplay.style.display = 'none';
-            userName.style.display = 'block';
+// quiz start button
+Start.addEventListener('click', function () {
+    Start.style.display = "none"
+    question1.style.display = "block"
+    timeDisplay.style.display = "flex"
+    title.style.display = "flex"
+    // function for quiz timer
+    var myInterval = setInterval(function () {
+        if (timeLeft > 0) {
+            timer.innerHTML = " " + timeLeft;
+            timeLeft--;
         }
-    }
-}, 100)
+        else {
+            if (timeLeft === 0) {
+                clearInterval(myInterval)
+                timer.innerHTML = " " + "0";
+                question1.style.display = "none";
+                question2.style.display = "none";
+                question3.style.display = "none";
+                question4.style.display = "none";
+                h1.innerHTML = "Times Up";
+                result.innerText = correct + " Correct Answers";
+                timeDisplay.style.display = 'none';
+                userName.style.display = 'block';
+            }
+        }
+    }, 100)
+})
 
 // logic for what happens when an answer is submitted
 Question1Submit.addEventListener('click', function (x) {
@@ -63,6 +73,7 @@ Question1Submit.addEventListener('click', function (x) {
     if (Question1Answer3.checked) {
         correct++;
     }
+    else { timeLeft = timeLeft - wrongAnswerSubtract }
 })
 
 Question2Submit.addEventListener('click', function (x) {
@@ -72,6 +83,7 @@ Question2Submit.addEventListener('click', function (x) {
     if (Question2Answer2.checked) {
         correct++;
     }
+    else { timeLeft = timeLeft - wrongAnswerSubtract }
 })
 
 Question3Submit.addEventListener('click', function (x) {
@@ -81,6 +93,7 @@ Question3Submit.addEventListener('click', function (x) {
     if (Question3Answer4.checked) {
         correct++;
     }
+    else { timeLeft = timeLeft - wrongAnswerSubtract }
 })
 
 Question4Submit.addEventListener('click', function (x) {
@@ -88,9 +101,9 @@ Question4Submit.addEventListener('click', function (x) {
     question4.style.display = "none";
     if (Question4Answer1.checked) {
         correct++;
-    };
+    }
+    else { timeLeft = timeLeft - wrongAnswerSubtract };
     result.innerText = correct + " Correct Answers";
-    clearInterval(myInterval);
     timeDisplay.style.display = 'none';
     userName.style.display = 'block'
 })
