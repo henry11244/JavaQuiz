@@ -1,6 +1,7 @@
 // selectors for HTML objects
 var Start = document.querySelector('#Start')
 var title = document.querySelector('#title')
+var intro = document.querySelector('#intro')
 var Question1Submit = document.querySelector('#Question1Submit')
 var Question2Submit = document.querySelector('#Question2Submit')
 var Question3Submit = document.querySelector('#Question3Submit')
@@ -48,6 +49,7 @@ if (JSON.parse(localStorage.getItem('scores') !== null)) { scores = JSON.parse(l
 // quiz start button
 Start.addEventListener('click', function () {
     Start.style.display = "none"
+    intro.style.display = "none"
     question1.style.display = "block"
     timeDisplay.style.display = "flex"
     title.style.display = "flex"
@@ -132,6 +134,7 @@ Question4Submit.addEventListener('click', function (x) {
     wrongPic.style.display = 'none';
     userName.style.display = 'block'
     victoryImg.style.display = 'block';
+    audio.setAttribute('src', '')
 })
 
 // funciton for what happens when user submits their names, including high scores, play 
@@ -168,5 +171,5 @@ function wrongImg() {
         wrongPic.setAttribute('class', 'img3')
     }
     explosion.play();
-
 }
+

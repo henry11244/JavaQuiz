@@ -37,7 +37,7 @@ div {
 
 button {
     margin-top: 3%;
-    background-color: rgb(33, 97, 161);
+    background-color: rgb(245, 9, 9);
     border: solid .5px black;
     border-radius: 30%;
     color: white;
@@ -114,4 +114,12 @@ img {
 
 audio {
     display: none;
+}
+
+#intro {
+    display: flex;
+    width: 90vh;
+    border: 3px solid red;
+    padding: 4px;
+    font-size: large;
 }
