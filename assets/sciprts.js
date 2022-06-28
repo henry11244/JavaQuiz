@@ -23,12 +23,11 @@ var highScores = document.querySelector('#highScores')
 var reset = document.querySelector('#reset')
 var highScoresHeading = document.querySelector('#highScoresHeading')
 
-
 // score count 
 var correct = 0
 
 // defining timer variable
-var timeLeft = 5
+var timeLeft = 1000
 
 // defining the score array for high scores and pulling any existing data from local storage 
 scores = []
@@ -114,9 +113,6 @@ nameSubmit.addEventListener('click', function () {
         newLi.innerHTML = scores[i];
         newOl.append(newLi);
         highScores.append(newOl);
-
     }
-
-}
-)
+})
 

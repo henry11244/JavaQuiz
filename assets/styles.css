@@ -2,7 +2,7 @@ body {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-
+    background-image: linear-gradient(rgb(52, 52, 52), rgb(123, 201, 250));
 }
 
 h1,
@@ -10,6 +10,7 @@ h2 {
     display: flex;
     justify-content: center;
     width: 100%;
+    color: white;
 }
 
 #question2,
@@ -30,11 +31,23 @@ div {
     width: 100%;
 }
 
-
-
 button {
     margin-top: 3%;
+    background-color: rgb(33, 97, 161);
+    border: solid .5px black;
+    border-radius: 30%;
+    color: white;
 }
+
+button:hover {
+    background-color: rgb(104, 135, 165);
+}
+
+button:active {
+    background-color: yellow;
+}
+
+
 
 input {
     margin-top: 2%;
