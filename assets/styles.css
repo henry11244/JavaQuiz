@@ -112,6 +112,11 @@ img {
     height: 90vh;
 }
 
+.img5 {
+    bottom: 0;
+    height: 50vh;
+}
+
 audio {
     display: none;
 }

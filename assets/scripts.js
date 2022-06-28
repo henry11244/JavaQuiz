@@ -27,11 +27,13 @@ var reset = document.querySelector('#reset')
 var highScoresHeading = document.querySelector('#highScoresHeading')
 var audio = document.querySelector('#audio')
 var explosion = document.querySelector('#explosion')
+var sadNoise = document.querySelector('#sadNoise')
 var wrongPic = document.querySelector('#wrongPic')
 var victoryImg = document.querySelector('#victoryImg')
+var lossImg = document.querySelector('#lossImg')
 
 // wrong answer subtraction value 
-var wrongAnswerSubtract = 5
+var wrongAnswerSubtract = 20
 
 // wrong answer count
 var wrongAnswer = 0
@@ -40,7 +42,7 @@ var wrongAnswer = 0
 var correct = 0
 
 // defining timer variable
-var timeLeft = 200
+var timeLeft = 100
 
 // defining the score array for high scores and pulling any existing data from local storage 
 scores = []
@@ -69,13 +71,16 @@ Start.addEventListener('click', function () {
                 question2.style.display = "none";
                 question3.style.display = "none";
                 question4.style.display = "none";
+                lossImg.style.display = "block";
                 h1.innerHTML = "Times Up";
                 result.innerText = correct + " Correct Answers";
                 timeDisplay.style.display = 'none';
                 userName.style.display = 'block';
+                audio.setAttribute('src', '');
+                sadNoise.play();
             }
         }
-    }, 10000)
+    }, 1000)
 })
 
 // logic for what happens when an answer is submitted
