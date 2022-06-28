@@ -4,8 +4,6 @@ body {
     flex-wrap: wrap;
     background-image: linear-gradient(rgb(52, 52, 52), rgb(123, 201, 250));
     background-size: auto 200vh;
-
-
 }
 
 h1,
@@ -78,4 +76,9 @@ section {
 #Start {
     font-size: larger;
     padding: 10px;
+}
+
+label {
+    color: white;
+    font-size: large;
 }

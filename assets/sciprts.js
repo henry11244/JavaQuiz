@@ -24,6 +24,9 @@ var endPage = document.querySelector('#endPage')
 var highScores = document.querySelector('#highScores')
 var reset = document.querySelector('#reset')
 var highScoresHeading = document.querySelector('#highScoresHeading')
+var audio = document.querySelector('#audio')
+
+// wrong answer count
 var wrongAnswerSubtract = 5
 
 // score count 
@@ -129,3 +132,7 @@ nameSubmit.addEventListener('click', function () {
     }
 })
 
+// jeopardy audio function
+function jeopardy() {
+    audio.play();
+}
