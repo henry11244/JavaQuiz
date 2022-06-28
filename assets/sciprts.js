@@ -1,3 +1,4 @@
+// selectors for HTML objects
 var Question1Submit = document.querySelector('#Question1Submit')
 var Question2Submit = document.querySelector('#Question2Submit')
 var Question3Submit = document.querySelector('#Question3Submit')
@@ -21,10 +22,19 @@ var endPage = document.querySelector('#endPage')
 var highScores = document.querySelector('#highScores')
 var reset = document.querySelector('#reset')
 var highScoresHeading = document.querySelector('#highScoresHeading')
-var nameValue = ''
-var correct = 0
-var timeLeft = 10
 
+
+// score count 
+var correct = 0
+
+// defining timer variable
+var timeLeft = 5
+
+// defining the score array for high scores and pulling any existing data from local storage 
+scores = []
+if (JSON.parse(localStorage.getItem('scores') !== null)) { scores = JSON.parse(localStorage.getItem('scores')) }
+
+// function for quiz timer
 var myInterval = setInterval(function () {
     if (timeLeft > 0) {
         timer.innerHTML = " " + timeLeft;
@@ -42,12 +52,11 @@ var myInterval = setInterval(function () {
             result.innerText = correct + " Correct Answers";
             timeDisplay.style.display = 'none';
             userName.style.display = 'block';
-
         }
     }
 }, 100)
 
-
+// logic for what happens when an answer is submitted
 Question1Submit.addEventListener('click', function (x) {
     x.preventDefault();
     question1.style.display = "none";
@@ -87,23 +96,16 @@ Question4Submit.addEventListener('click', function (x) {
     userName.style.display = 'block'
 })
 
-Name.addEventListener('change', function () {
-    nameValue = Name.value
-
-})
-
-scores = []
-if (JSON.parse(localStorage.getItem('scores') !== null)) { scores = JSON.parse(localStorage.getItem('scores')) }
-
+// funciton for what happens when user submits their names, including high scores, play 
+// again button, hiding the irrelevant objects and updating local storage
 nameSubmit.addEventListener('click', function () {
-
     endPage.setAttribute('style', 'display: flex; border: none');
     highScoresHeading.setAttribute('style', 'display: flex; border: none');
     reset.setAttribute('style', 'display: flex; border: none');
     h1.style.display = "none";
     result.style.display = "none";
     userName.style.display = "none";
-    var newScore = [nameValue, correct];
+    var newScore = [Name.value, correct];
     scores.push(newScore);
     localStorage.setItem('scores', JSON.stringify(scores));
     var newOl = document.createElement('ol')
