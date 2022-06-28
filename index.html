@@ -13,13 +13,17 @@ grading one about JS history might be more interesting -->
     <link rel="stylesheet" href="assets/styles.css">
 </head>
 
+
 <body>
-    <img src="assets/images/DBZ1.png" alt="Bulma">
+    <img src="assets/images/DBZ1.png" alt="Dragon Ball Z Character saying wrong answer" id="wrongPic">
     <section>
+        <audio controls loop id="audio">
+            <source src="assets/Jeopardy.mp3" type="audio/mp3">
+        </audio>
 
-        <!-- <audio id="audio" src="assets/Jeopardy.mp3"></audio> -->
+        <audio id="explosion" src="assets/Explosion.mp3"></audio>
 
-        <button id="Start" onclick="jeopardy()">Start The Most Epic Quiz of Your Life</button>
+        <button id="Start">Start The Most Epic Quiz of Your Life</button>
         <h1 id="title">JavaScript Quiz</h1>
         <br>
         <h2 id="result"></h2>
@@ -83,6 +87,7 @@ grading one about JS history might be more interesting -->
         <button id="nameSubmit">Submit</button>
     </div>
 
+    <img src="assets/Images/VictoryPic.png" alt="Goku Sleeping" class="img4" id="victoryImg">
 
     <div id="endPage">
         <h2 id="thankYou">Thank you for playing</h2> <br>

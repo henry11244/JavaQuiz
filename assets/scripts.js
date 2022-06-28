@@ -25,7 +25,9 @@ var highScores = document.querySelector('#highScores')
 var reset = document.querySelector('#reset')
 var highScoresHeading = document.querySelector('#highScoresHeading')
 var audio = document.querySelector('#audio')
-var img = document.querySelector('img')
+var explosion = document.querySelector('#explosion')
+var wrongPic = document.querySelector('#wrongPic')
+var victoryImg = document.querySelector('#victoryImg')
 
 // wrong answer subtraction value 
 var wrongAnswerSubtract = 5
@@ -49,6 +51,8 @@ Start.addEventListener('click', function () {
     question1.style.display = "block"
     timeDisplay.style.display = "flex"
     title.style.display = "flex"
+    audio.play();
+
     // function for quiz timer
     var myInterval = setInterval(function () {
         if (timeLeft > 0) {
@@ -125,7 +129,9 @@ Question4Submit.addEventListener('click', function (x) {
     else { timeLeft = timeLeft - wrongAnswerSubtract };
     result.innerText = correct + " Correct Answers";
     timeDisplay.style.display = 'none';
+    wrongPic.style.display = 'none';
     userName.style.display = 'block'
+    victoryImg.style.display = 'block';
 })
 
 // funciton for what happens when user submits their names, including high scores, play 
@@ -149,20 +155,18 @@ nameSubmit.addEventListener('click', function () {
     }
 })
 
-// jeopardy audio function
-// function jeopardy() {
-//     audio.play();
-// }
 
+// Image for wrong answer rotation and wrong answer sound
 function wrongImg() {
-    if (wrongAnswer === 1) { img.setAttribute('style', 'display: block'); img.setAttribute('class', 'img1') }
+    if (wrongAnswer === 1) { wrongPic.setAttribute('style', 'display: block'); wrongPic.setAttribute('class', 'img1') }
     else if (wrongAnswer === 2) {
-        img.setAttribute('src', 'assets/images/DBZ2.png');
-        img.setAttribute('class', 'img2')
+        wrongPic.setAttribute('src', 'assets/images/DBZ2.png');
+        wrongPic.setAttribute('class', 'img2')
     }
     else {
-        img.setAttribute('src', 'assets/images/DBZ3.png');
-        img.setAttribute('class', 'img3')
+        wrongPic.setAttribute('src', 'assets/images/DBZ3.png');
+        wrongPic.setAttribute('class', 'img3')
     }
+    explosion.play();
 
 }

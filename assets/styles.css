@@ -109,5 +109,9 @@ img {
 .img4 {
     left: 0;
     top: 0;
-    height: 30vh;
+    height: 90vh;
+}
+
+audio {
+    display: none;
 }
