@@ -28,50 +28,53 @@ var highScoresHeading = document.querySelector('#highScoresHeading')
 var audio = document.querySelector('#audio')
 var explosion = document.querySelector('#explosion')
 var sadNoise = document.querySelector('#sadNoise')
+var cheer = document.querySelector('#cheer')
 var wrongPic = document.querySelector('#wrongPic')
 var victoryImg = document.querySelector('#victoryImg')
 var lossImg = document.querySelector('#lossImg')
 
 // wrong answer subtraction value 
-var wrongAnswerSubtract = 20
+var wrongAnswerSubtract = 50
 
 // wrong answer count
-var wrongAnswer = 25
+var wrongAnswer = 0
 
 // score count 
 var correct = 0
 
 // defining timer variable
-var timeLeft = 100
+var timeLeft = 70
 
 // defining the score array for high scores and pulling any existing data from local storage 
 scores = []
 if (JSON.parse(localStorage.getItem('scores') !== null)) { scores = JSON.parse(localStorage.getItem('scores')) }
 
 function myInterval() {
-    setInterval(function () {
-        if (timeLeft > 0) {
-            timer.innerHTML = " " + timeLeft;
-            timeLeft--;
-        }
-        else {
-            if (timeLeft < 1) {
-                clearInterval(myInterval)
-                timer.innerHTML = " " + "0";
-                question1.style.display = "none";
-                question2.style.display = "none";
-                question3.style.display = "none";
-                question4.style.display = "none";
-                lossImg.style.display = "block";
-                h1.innerHTML = "Times Up";
-                result.innerText = correct + " Correct Answers";
-                timeDisplay.style.display = 'none';
-                userName.style.display = 'block';
-                audio.setAttribute('src', '');
-                sadNoise.play();
+    var interval =
+        setInterval(function () {
+            if (timeLeft > 0) {
+                timer.innerHTML = " " + timeLeft;
+                timeLeft--;
             }
-        }
-    }, 1000)
+            else {
+                if (timeLeft < 1) {
+                    clearInterval(interval)
+                    timer.innerHTML = " " + "0";
+                    question1.style.display = "none";
+                    question2.style.display = "none";
+                    question3.style.display = "none";
+                    question4.style.display = "none";
+                    lossImg.style.display = "block";
+                    h1.innerHTML = "Times Up";
+                    result.innerText = correct + " Correct Answers";
+                    timeDisplay.style.display = 'none';
+                    userName.style.display = 'block';
+                    audio.setAttribute('src', '');
+                    sadNoise.play();
+                }
+            }
+            if (wrongAnswer + correct === 4) { clearInterval(interval) }
+        }, 1000)
 }
 
 // quiz start button
@@ -143,8 +146,8 @@ Question4Submit.addEventListener('click', function (x) {
     wrongPic.style.display = 'none';
     userName.style.display = 'block'
     victoryImg.style.display = 'block';
-    audio.setAttribute('src', '');
-    clearInterval(myInterval)
+    audio.setAttribute('src', '')
+    cheer.play();
 })
 
 // funciton for what happens when user submits their names, including high scores, play 
@@ -167,7 +170,6 @@ nameSubmit.addEventListener('click', function () {
         highScores.append(newOl);
     }
 })
-
 
 // Image for wrong answer rotation and wrong answer sound
 function wrongImg() {

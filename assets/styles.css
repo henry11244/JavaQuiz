@@ -129,3 +129,9 @@ audio {
     padding: 4px;
     font-size: large;
 }
+
+#DrEvil {
+    display: flex;
+    bottom: 0;
+    width: 60vh;
+}
