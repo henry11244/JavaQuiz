@@ -34,7 +34,7 @@ var victoryImg = document.querySelector('#victoryImg')
 var lossImg = document.querySelector('#lossImg')
 
 // wrong answer subtraction value 
-var wrongAnswerSubtract = 50
+var wrongAnswerSubtract = 25
 
 // wrong answer count
 var wrongAnswer = 0
@@ -43,7 +43,7 @@ var wrongAnswer = 0
 var correct = 0
 
 // defining timer variable
-var timeLeft = 70
+var timeLeft = 100
 
 // defining the score array for high scores and pulling any existing data from local storage 
 scores = []
