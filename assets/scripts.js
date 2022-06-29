@@ -195,12 +195,12 @@ nameSubmit.addEventListener('click', function () {
 function wrongImg() {
     if (wrongAnswer === 1) { wrongPic.setAttribute('style', 'display: block'); wrongPic.setAttribute('class', 'img1') }
     else if (wrongAnswer === 2) {
-        wrongPic.setAttribute('src', 'assets/images/DBZ2.png');
+        wrongPic.setAttribute('src', 'assets/Images/DBZ2.png');
         wrongPic.setAttribute('class', 'img2')
         wrongPic.setAttribute('style', 'display: block')
     }
     else {
-        wrongPic.setAttribute('src', 'assets/images/DBZ3.png');
+        wrongPic.setAttribute('src', 'assets/Images/DBZ3.png');
         wrongPic.setAttribute('class', 'img3')
         wrongPic.setAttribute('style', 'display: block')
     }
