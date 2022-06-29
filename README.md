@@ -47,7 +47,7 @@ The goal of this project was to make a friendly quiz on JavaScript. In addition 
 
 ## Instructions
 
-![Alt Text](assets/JavaScript.gif)
+![Alt Text](assets/Images/JavaScript.gif)
 
 
 Once you have navagated to the webpage, 
