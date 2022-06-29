@@ -107,8 +107,6 @@ Start.addEventListener('click', function () {
     title.style.display = "flex"
     audio.play();
     myInterval()
-
-
 })
 
 // logic for what happens when an answer is submitted
