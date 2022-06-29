@@ -49,7 +49,8 @@ var timeLeft = 100
 scores = []
 if (JSON.parse(localStorage.getItem('scores') !== null)) { scores = JSON.parse(localStorage.getItem('scores')) }
 
-function myInterval() {
+
+var myInterval = () => {
     var interval =
         setInterval(function () {
             if (timeLeft > 0) {
@@ -60,16 +61,16 @@ function myInterval() {
                 if (timeLeft < 1) {
                     clearInterval(interval)
                     timer.innerHTML = " " + "0";
-                    question1.style.display = "none";
-                    question2.style.display = "none";
-                    question3.style.display = "none";
-                    question4.style.display = "none";
+                    question1.remove();
+                    question2.remove();
+                    question3.remove();
+                    question4.remove();
                     lossImg.style.display = "block";
                     h1.innerHTML = "Times Up";
                     result.innerText = correct + " Correct Answers";
-                    timeDisplay.style.display = 'none';
+                    timeDisplay.remove();
                     userName.style.display = 'block';
-                    audio.setAttribute('src', '');
+                    audio.remove();
                     sadNoise.play();
                 }
             }
@@ -79,8 +80,8 @@ function myInterval() {
 
 // quiz start button
 Start.addEventListener('click', function () {
-    Start.style.display = "none"
-    intro.style.display = "none"
+    Start.remove()
+    intro.remove()
     question1.style.display = "block"
     timeDisplay.style.display = "flex"
     title.style.display = "flex"
@@ -93,7 +94,7 @@ Start.addEventListener('click', function () {
 // logic for what happens when an answer is submitted
 Question1Submit.addEventListener('click', function (x) {
     x.preventDefault();
-    question1.style.display = "none";
+    question1.remove();
     question2.style.display = "block";
     if (Question1Answer3.checked) {
         correct++;
@@ -108,7 +109,7 @@ Question1Submit.addEventListener('click', function (x) {
 
 Question2Submit.addEventListener('click', function (x) {
     x.preventDefault();
-    question2.style.display = "none";
+    question2.remove();
     question3.style.display = "block";
     if (Question2Answer2.checked) {
         correct++;
@@ -122,7 +123,7 @@ Question2Submit.addEventListener('click', function (x) {
 
 Question3Submit.addEventListener('click', function (x) {
     x.preventDefault();
-    question3.style.display = "none";
+    question3.remove();
     question4.style.display = "block";
     if (Question3Answer4.checked) {
         correct++;
@@ -136,17 +137,17 @@ Question3Submit.addEventListener('click', function (x) {
 
 Question4Submit.addEventListener('click', function (x) {
     x.preventDefault();
-    question4.style.display = "none";
+    question4.remove();
     if (Question4Answer1.checked) {
         correct++;
     }
     else { timeLeft = timeLeft - wrongAnswerSubtract };
     result.innerText = correct + " Correct Answers";
-    timeDisplay.style.display = 'none';
-    wrongPic.style.display = 'none';
+    timeDisplay.remove();
+    wrongPic.remove();
     userName.style.display = 'block'
     victoryImg.style.display = 'block';
-    audio.setAttribute('src', '')
+    audio.remove()
     cheer.play();
 })
 
@@ -156,16 +157,17 @@ nameSubmit.addEventListener('click', function () {
     endPage.setAttribute('style', 'display: flex; border: none');
     highScoresHeading.setAttribute('style', 'display: flex; border: none');
     reset.setAttribute('style', 'display: flex; border: none');
-    h1.style.display = "none";
-    result.style.display = "none";
-    userName.style.display = "none";
-    var newScore = [Name.value, correct];
+    h1.remove();
+    result.remove();
+    userName.remove();
+    var newScore = [correct, Name.value];
     scores.push(newScore);
+    scores = scores.sort().reverse()
     localStorage.setItem('scores', JSON.stringify(scores));
     var newOl = document.createElement('ol')
     for (var i = 0; i < scores.length; i++) {
         var newLi = document.createElement('li');
-        newLi.innerHTML = scores[i]
+        newLi.innerHTML = scores[i][1] + ' Correct answers: ' + scores[i][0]
         newOl.append(newLi);
         highScores.append(newOl);
     }

@@ -82,6 +82,7 @@ label,
 #highScores {
     color: white;
     font-size: large;
+    width: 300px;
 }
 
 img {
@@ -115,6 +116,7 @@ img {
 
 .img5 {
     bottom: 0;
+    left: 0;
     height: 50vh;
 }
 
