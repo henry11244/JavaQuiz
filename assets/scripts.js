@@ -42,7 +42,7 @@ var wrongAnswer = 25
 var correct = 0
 
 // defining timer variable
-var timeLeft = 20
+var timeLeft = 100
 
 // defining the score array for high scores and pulling any existing data from local storage 
 scores = []
