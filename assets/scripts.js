@@ -1,7 +1,9 @@
 // selectors for HTML objects
+var img = document.querySelector('img')
 var Start = document.querySelector('#Start')
 var title = document.querySelector('#title')
 var intro = document.querySelector('#intro')
+var DrEvil = document.querySelector('#DrEvil')
 var Question1Submit = document.querySelector('#Question1Submit')
 var Question2Submit = document.querySelector('#Question2Submit')
 var Question3Submit = document.querySelector('#Question3Submit')
@@ -49,7 +51,35 @@ var timeLeft = 100
 scores = []
 if (JSON.parse(localStorage.getItem('scores') !== null)) { scores = JSON.parse(localStorage.getItem('scores')) }
 
+// creating function for losing scenario, naming it so it can be called twice
+var losingFunction = () => {
+    timer.innerHTML = " " + "0";
+    question1.remove();
+    question2.remove();
+    question3.remove();
+    question4.remove();
+    wrongPic.remove()
+    lossImg.style.display = "block";
+    h1.innerHTML = "Times Up";
+    result.innerText = correct + " Correct Answers";
+    timeDisplay.remove();
+    userName.style.display = 'block';
+    audio.remove();
+    sadNoise.play();
+}
 
+// creating function for winning scenario
+var winningFunction = () => {
+    result.innerText = correct + " Correct Answers";
+    timeDisplay.remove();
+    wrongPic.remove();
+    userName.style.display = 'block'
+    victoryImg.style.display = 'block';
+    audio.remove()
+    cheer.play();
+}
+
+// function for quiz timer
 var myInterval = () => {
     var interval =
         setInterval(function () {
@@ -59,36 +89,26 @@ var myInterval = () => {
             }
             else {
                 if (timeLeft < 1) {
-                    clearInterval(interval)
-                    timer.innerHTML = " " + "0";
-                    question1.remove();
-                    question2.remove();
-                    question3.remove();
-                    question4.remove();
-                    lossImg.style.display = "block";
-                    h1.innerHTML = "Times Up";
-                    result.innerText = correct + " Correct Answers";
-                    timeDisplay.remove();
-                    userName.style.display = 'block';
-                    audio.remove();
-                    sadNoise.play();
+                    losingFunction();
+                    clearInterval(interval);
                 }
             }
-            if (wrongAnswer + correct === 4) { clearInterval(interval) }
+            if (wrongAnswer + correct === 4) { setInterval(function () { clearInterval(interval) }, 500) }
         }, 1000)
 }
 
 // quiz start button
 Start.addEventListener('click', function () {
-    Start.remove()
-    intro.remove()
+    Start.remove();
+    intro.remove();
+    DrEvil.remove();
     question1.style.display = "block"
     timeDisplay.style.display = "flex"
     title.style.display = "flex"
     audio.play();
     myInterval()
 
-    // function for quiz timer
+
 })
 
 // logic for what happens when an answer is submitted
@@ -98,6 +118,7 @@ Question1Submit.addEventListener('click', function (x) {
     question2.style.display = "block";
     if (Question1Answer3.checked) {
         correct++;
+        img.style.display = 'none'
     }
     else {
         timeLeft = timeLeft - wrongAnswerSubtract;
@@ -113,6 +134,7 @@ Question2Submit.addEventListener('click', function (x) {
     question3.style.display = "block";
     if (Question2Answer2.checked) {
         correct++;
+        img.style.display = 'none'
     }
     else {
         timeLeft = timeLeft - wrongAnswerSubtract;
@@ -127,6 +149,7 @@ Question3Submit.addEventListener('click', function (x) {
     question4.style.display = "block";
     if (Question3Answer4.checked) {
         correct++;
+        img.style.display = 'none'
     }
     else {
         timeLeft = timeLeft - wrongAnswerSubtract
@@ -140,15 +163,12 @@ Question4Submit.addEventListener('click', function (x) {
     question4.remove();
     if (Question4Answer1.checked) {
         correct++;
+        img.style.display = 'none';
+        winningFunction()
     }
-    else { timeLeft = timeLeft - wrongAnswerSubtract };
-    result.innerText = correct + " Correct Answers";
-    timeDisplay.remove();
-    wrongPic.remove();
-    userName.style.display = 'block'
-    victoryImg.style.display = 'block';
-    audio.remove()
-    cheer.play();
+    else if (timeLeft - wrongAnswerSubtract < 1) { losingFunction(); clearInterval(interval); }
+    else { winningFunction() }
+
 })
 
 // funciton for what happens when user submits their names, including high scores, play 
@@ -167,7 +187,7 @@ nameSubmit.addEventListener('click', function () {
     var newOl = document.createElement('ol')
     for (var i = 0; i < scores.length; i++) {
         var newLi = document.createElement('li');
-        newLi.innerHTML = scores[i][1] + ' Correct answers: ' + scores[i][0]
+        newLi.innerHTML = scores[i][1] + ', Correct answers: ' + scores[i][0]
         newOl.append(newLi);
         highScores.append(newOl);
     }
@@ -179,10 +199,12 @@ function wrongImg() {
     else if (wrongAnswer === 2) {
         wrongPic.setAttribute('src', 'assets/images/DBZ2.png');
         wrongPic.setAttribute('class', 'img2')
+        wrongPic.setAttribute('style', 'display: block')
     }
     else {
         wrongPic.setAttribute('src', 'assets/images/DBZ3.png');
         wrongPic.setAttribute('class', 'img3')
+        wrongPic.setAttribute('style', 'display: block')
     }
     explosion.play();
 }

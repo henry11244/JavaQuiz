@@ -97,12 +97,14 @@ img {
 }
 
 .img2 {
+    display: block;
     right: 0;
     bottom: 0;
     height: 40vh;
 }
 
 .img3 {
+    display: block;
     right: 0;
     top: 0;
     height: 50vh;
@@ -135,5 +137,6 @@ audio {
 #DrEvil {
     display: flex;
     bottom: 0;
+    right: 0;
     width: 60vh;
 }
