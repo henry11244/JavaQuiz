@@ -36,35 +36,26 @@ var lossImg = document.querySelector('#lossImg')
 var wrongAnswerSubtract = 20
 
 // wrong answer count
-var wrongAnswer = 0
+var wrongAnswer = 25
 
 // score count 
 var correct = 0
 
 // defining timer variable
-var timeLeft = 100
+var timeLeft = 20
 
 // defining the score array for high scores and pulling any existing data from local storage 
 scores = []
 if (JSON.parse(localStorage.getItem('scores') !== null)) { scores = JSON.parse(localStorage.getItem('scores')) }
 
-// quiz start button
-Start.addEventListener('click', function () {
-    Start.style.display = "none"
-    intro.style.display = "none"
-    question1.style.display = "block"
-    timeDisplay.style.display = "flex"
-    title.style.display = "flex"
-    audio.play();
-
-    // function for quiz timer
-    var myInterval = setInterval(function () {
+function myInterval() {
+    setInterval(function () {
         if (timeLeft > 0) {
             timer.innerHTML = " " + timeLeft;
             timeLeft--;
         }
         else {
-            if (timeLeft === 0) {
+            if (timeLeft < 1) {
                 clearInterval(myInterval)
                 timer.innerHTML = " " + "0";
                 question1.style.display = "none";
@@ -81,6 +72,19 @@ Start.addEventListener('click', function () {
             }
         }
     }, 1000)
+}
+
+// quiz start button
+Start.addEventListener('click', function () {
+    Start.style.display = "none"
+    intro.style.display = "none"
+    question1.style.display = "block"
+    timeDisplay.style.display = "flex"
+    title.style.display = "flex"
+    audio.play();
+    myInterval()
+
+    // function for quiz timer
 })
 
 // logic for what happens when an answer is submitted
@@ -139,7 +143,8 @@ Question4Submit.addEventListener('click', function (x) {
     wrongPic.style.display = 'none';
     userName.style.display = 'block'
     victoryImg.style.display = 'block';
-    audio.setAttribute('src', '')
+    audio.setAttribute('src', '');
+    clearInterval(myInterval)
 })
 
 // funciton for what happens when user submits their names, including high scores, play 
@@ -157,7 +162,7 @@ nameSubmit.addEventListener('click', function () {
     var newOl = document.createElement('ol')
     for (var i = 0; i < scores.length; i++) {
         var newLi = document.createElement('li');
-        newLi.innerHTML = scores[i];
+        newLi.innerHTML = scores[i]
         newOl.append(newLi);
         highScores.append(newOl);
     }

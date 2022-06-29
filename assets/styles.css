@@ -78,7 +78,8 @@ section {
     padding: 10px;
 }
 
-label {
+label,
+#highScores {
     color: white;
     font-size: large;
 }
